@@ -1,0 +1,43 @@
+<form>
+
+    <!-- <label for="first-name">First Name: </label>
+    <input id="first-name" type="text" formControlName="firstName">
+  
+    <label for="last-name">Last Name: </label>
+    <input id="last-name" type="text" formControlName="lastName">
+
+    <label for="age">Age: </label>
+    <input id="age" type="int" formControlName="age"> -->
+  
+
+    <div>
+        <div class="form-group">
+
+            <div class="form-control">
+                <label class="control-label" >First Name: </label>
+                <input  [(ngModel)]="entity.FirstName"  type="text" [ngModelOptions]="{standalone: true}">
+
+            </div>
+
+            <div class="form-control">
+                <label class="control-label" >Last name: </label>
+                <input  [(ngModel)]="entity.LastName"  type="text" [ngModelOptions]="{standalone: true}">
+
+            </div>
+
+            <div class="form-control">
+                <label class="control-label" >Age: </label>
+                <input [(ngModel)]="entity.Age"  type="number" [ngModelOptions]="{standalone: true}">
+
+            </div>
+
+        </div>
+
+        <button type="button" (click)="save()" >save</button>
+
+    </div>
+
+
+  </form>
+<pre>{{entity|json}}</pre>
+
