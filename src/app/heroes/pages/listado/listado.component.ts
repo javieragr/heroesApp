@@ -1,15 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { Cliente } from 'src/app/entities/cliente.models';
 import { ClienteService } from 'src/app/services/cliente.service';
+import { HeroesService } from '../../services/heroes.service';
+import { Heroe } from '../../interfaces/heroes.interface';
 
 @Component({
   selector: 'app-listado',
-  templateUrl: './listado.component.html'
+  templateUrl: './listado.component.html',
+  styles:[
+    `
+    mat-card{
+      margin-top:20px
+    }
+    `
+  ]
 })
 export class ListadoComponent implements OnInit {
   entity : Cliente = new Cliente();
+   heroes : Heroe[] =[] ;
   
-  constructor(private clienteService:ClienteService) { }
+  constructor(private clienteService:ClienteService,private heroesService:HeroesService) { }
   
    save (){
      let  tosave : Cliente = new Cliente();
@@ -38,6 +48,10 @@ export class ListadoComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.heroesService.getHeroes().subscribe(resp=> {
+      this.heroes=resp;
+
+    })
   }
 
 }

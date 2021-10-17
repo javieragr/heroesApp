@@ -10,6 +10,8 @@ import {MaterialModule} from '../material/material.module'
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { HeroeTarjetaComponent } from './components/heroe-tarjeta/heroe-tarjeta.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,8 @@ import { FormsModule } from '@angular/forms';
     BuscarComponent,
     HeroeComponent,
     HomeComponent,
-    ListadoComponent
+    ListadoComponent,
+    HeroeTarjetaComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +29,8 @@ import { FormsModule } from '@angular/forms';
     MaterialModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    FlexLayoutModule
   ]
 })
 export class HeroesModule { }

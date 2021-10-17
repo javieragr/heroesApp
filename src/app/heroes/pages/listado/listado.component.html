@@ -1,4 +1,4 @@
-<form>
+<!-- <form> -->
 
     <!-- <label for="first-name">First Name: </label>
     <input id="first-name" type="text" formControlName="firstName">
@@ -10,7 +10,7 @@
     <input id="age" type="int" formControlName="age"> -->
   
 
-    <div>
+    <!-- <div>
         <div class="form-group">
 
             <div class="form-control">
@@ -39,5 +39,21 @@
 
 
   </form>
-<pre>{{entity|json}}</pre>
+<pre>{{entity|json}}</pre> -->
+
+<h1>Listado de Heroes</h1>
+<mat-divider></mat-divider>
+<br>
+
+<div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="20px" >
+    <div  fxFlex="20" *ngFor="let item of heroes"
+        fxFlex.lg="15"
+        fxFlex.sm="30"
+        
+    >
+       
+       <app-heroe-tarjeta [heroe]="item" ></app-heroe-tarjeta>
+    </div>
+    
+</div>
 
