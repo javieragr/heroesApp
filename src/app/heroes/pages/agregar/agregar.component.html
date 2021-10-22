@@ -1,3 +1,67 @@
 <p>agregar works!</p>
 
-<app-heroe></app-heroe>
+<!-- <app-heroe></app-heroe> -->
+<div fxLayout="row" fxLayoutGap="40px" fxLayout.xs="column" >
+
+    <div fxFlex="50" fxLayout="column" >
+        <div fxFlex="row" fxLayoutGap="20px" fxLayout.xs="column">
+            <mat-form-field fxFlex="50" >
+                <mat-label>
+                    Super Heroe
+                </mat-label>
+                <input matInput type="text" [(ngModel)]="heroe.superhero" required  >
+            </mat-form-field>
+    
+            <mat-form-field fxFlex="50" >
+                <mat-label>
+                    Alter Ego
+                </mat-label>
+                <input matInput type="text" [(ngModel)]="heroe.alter_ego"required  >
+            </mat-form-field>
+        </div>
+        
+        <mat-form-field fxFlex="100" >
+            <mat-label>
+                Primera aparicion
+            </mat-label>
+            <input matInput type="text"[(ngModel)]="heroe.first_appearance" required  >
+        </mat-form-field>
+        <mat-form-field fxFlex="100" >
+            <mat-label>
+                Personajes
+            </mat-label>
+            <input matInput type="text" required [(ngModel)]="heroe.characters" >
+        </mat-form-field>
+        <mat-form-field fxFlex="100" >
+            <mat-label>
+                Creador
+            </mat-label>
+            <mat-select [(ngModel)]="heroe.publisher">
+                <mat-option *ngFor="let item of publishers" [value]="item.id"  >{{item.desc}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field fxFlex="100" >
+            <mat-label>
+                Foto url
+            </mat-label>
+            <input matInput type="url" [(ngModel)]="heroe.alt_image" requiredurl  >
+        </mat-form-field>
+        <br>    
+        <button mat-raised-button color="primary" (click)="guardar()" >
+            Guardar
+        </button>
+        <br>
+        <div *ngIf="heroe.id" >
+            <button fxFlex="100" mat-raised-button color="warn" (click)="eliminar()" >
+                eliminar
+            </button>
+        </div>
+    </div>
+
+    <div fxFlex="50" fxLayout="column" >
+        
+       <img [src]="heroe|imagen" >
+        
+    </div>
+
+</div>
