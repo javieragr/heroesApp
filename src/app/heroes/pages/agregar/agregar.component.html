@@ -1,5 +1,4 @@
-<p>agregar works!</p>
-
+<h1>{{ (heroe.id)?'Editar':'Nuevo' }}</h1>
 <!-- <app-heroe></app-heroe> -->
 <div fxLayout="row" fxLayoutGap="40px" fxLayout.xs="column" >
 
@@ -48,7 +47,7 @@
         </mat-form-field>
         <br>    
         <button mat-raised-button color="primary" (click)="guardar()" >
-            Guardar
+            {{ (heroe.id)?'Actualizar':'Guardar' }}
         </button>
         <br>
         <div *ngIf="heroe.id" >

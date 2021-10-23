@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { Heroe, Publisher } from '../../interfaces/heroes.interface';
 import { HeroesService } from '../../services/heroes.service';
+import { ConfirmarComponent } from '../../components/confirmar/confirmar.component';
 
 @Component({
   selector: 'app-agregar',
@@ -32,7 +35,11 @@ export class AgregarComponent implements OnInit {
 
   }
 
-  constructor(private heroeService:HeroesService,private activatedRoute:ActivatedRoute,private router:Router) { }
+  constructor(private heroeService:HeroesService,
+    private activatedRoute:ActivatedRoute,
+    private router:Router,
+    private snackBar:MatSnackBar,
+    public dialog :MatDialog) { }
 
   ngOnInit(): void {
 
@@ -52,11 +59,12 @@ export class AgregarComponent implements OnInit {
     if (this.heroe.id) {
       
       this.heroeService.actualizarHeroe(this.heroe).subscribe(resp=>{
-        console.log(resp);
+        this.mostrarSnackBar('Actualice prrooo');
       })
 
     }else{
       this.heroeService.agregarHeroe(this.heroe).subscribe(resp=>{
+        this.mostrarSnackBar('Guarde prrooo');
         this.router.navigate(['/heroes/editar',resp.id])
       })
     }
@@ -64,11 +72,23 @@ export class AgregarComponent implements OnInit {
   }
 
   eliminar(){
-
-    this.heroeService.borrarHeroe(this.heroe.id!).subscribe(resp=> {
-      this.router.navigate(['/heroes/agregar'])
-
+   const dialog= this.dialog.open(ConfirmarComponent,{width:'250px',data:this.heroe});
+    dialog.afterClosed().subscribe(res=>{
+      if (res) {
+        this.heroeService.borrarHeroe(this.heroe.id!).subscribe(resp=> {
+          this.mostrarSnackBar('Elimine prrooo');
+          this.router.navigate(['/heroes/agregar'])
+    
+        })
+      }
     })
+    
+
+    
+  }
+
+  mostrarSnackBar(mensaje:string){
+    this.snackBar.open(mensaje,'ok!',{ duration:2500})
   }
 
 }
